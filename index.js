@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 const port = 3000;
 
 const users = [
@@ -36,6 +38,15 @@ app.get('/users/search', (req, res) => {
   res.render('users/index', {
     users: matchedUsers,
   });
+});
+
+app.get('/users/create', (req, res) => {
+  res.render('users/create.pug');
+});
+
+app.post('/users/create', (req, res) => {
+  users.push(req.body);
+  res.redirect('/users');
 });
 
 app.listen(port, () => console.log(`Server is listening on port ${port}`));
