@@ -11,5 +11,5 @@
   ```
 - Start server
   ```bash
-  npm install
+  npm start
   ```
