@@ -2,8 +2,14 @@
 
 - Clone the repo
 - Go to directory
-  > cd test-express
+  ```bash
+  cd test-express
+  ```
 - Install packages
-  > npm install
+  ```bash
+  npm install
+  ```
 - Start server
-  > node index.js
+  ```bash
+  npm install
+  ```
