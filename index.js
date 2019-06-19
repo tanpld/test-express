@@ -59,4 +59,16 @@ app.post('/users/create', (req, res) => {
   res.redirect('/users');
 });
 
+app.get('/users/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const user = db
+    .get('users')
+    .find({ id: id })
+    .value();
+  console.log(user);
+  res.render('users/view', {
+    user: user,
+  });
+});
+
 app.listen(port, () => console.log(`Server is listening on port ${port}`));
