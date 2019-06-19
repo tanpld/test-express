@@ -2,6 +2,7 @@ extends ../layouts/common
 block content
   h1 Create user
   form(action="/users/create", method="POST")
-    label(for="name") Name
-    input(type="text", name="name")
-    button Create
+    .form-group
+      label(for="name") Name
+      input#name.form-control(type="text", name="name" autofocus)
+    button.btn.btn-primary Create
