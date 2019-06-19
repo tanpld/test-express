@@ -1,12 +1,15 @@
-h1 Users
-a(href='/users/create') New
-form(action="/users/search", method="GET", id="search-form")
-  input(type="text", name="q", id="search-input")
-  button Search
-ul
-  each user in users
-    li
-      span= user.name
-      a(href="/users/" + user.id) View
-script
-  include script.js
+extends ../layouts/common
+block content
+  h1 Users
+  a(href='/users/create') New
+  form(action="/users/search", method="GET", id="search-form")
+    .form-group
+      input(type="text", name="q", id="search-input", class="form-control")
+    button(class="btn btn-primary") Search
+  ul
+    each user in users
+      li
+        span= user.name
+        a(href="/users/" + user.id) View
+  script
+    include script.js
