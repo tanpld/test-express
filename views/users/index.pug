@@ -11,13 +11,15 @@ block content
     thead
       tr
         th ID
-        th.col Name
-        th.col Actions
+        th Name
+        th Phone
+        th Actions
     tbody
       each user in users
         tr
           td= user.id
           td= user.name
+          td= user.phone
           td
             a.btn.btn-info(href="/users/" + user.id) View
   script
