@@ -23,21 +23,7 @@ module.exports.createView = (req, res) => {
 };
 
 module.exports.createAction = (req, res) => {
-  const errors = [];
   req.body.id = shortid.generate();
-  if (!req.body.name) {
-    errors.push('Name is required');
-  }
-  if (!req.body.phone) {
-    errors.push('Phone is required');
-  }
-  if (errors.length) {
-    res.render('users/create', {
-      errors: errors,
-      values: req.body,
-    });
-    return;
-  }
   db.get('users')
     .push(req.body)
     .write();
