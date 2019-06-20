@@ -12,7 +12,7 @@ const port = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cookieParser());
+app.use(cookieParser('XuOLPWQNXsfwJ1Sd8atT'));
 
 app.use(express.static('public'));
 
