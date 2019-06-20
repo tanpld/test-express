@@ -1,0 +1,35 @@
+extends ../layouts/common
+block content
+  h1 Products
+  //- .d-flex.flex-row-reverse.mb-3
+  //-   a.btn.btn-success(href="/users/create") Create
+  form.form-inline(action="/products/search", method="GET", id="search-form")
+    .form-group
+      input.form-control.mr-3(type="text", name="q", id="search-input", autofocus, value=value ? values.q : '')
+    button.btn.btn-primary Search
+    div.mt-3
+      .row
+        each product in products
+          .col-md-3.col-sm-6
+            .card.mb-3
+              img.card-img-top(src=product.image)
+              .card-body
+                h5.card-title= product.name
+                p.card-text= product.description
+
+      nav(aria-label='Page navigation example')
+        ul.pagination
+          if (currentPage !== 1) 
+            li.page-item
+              a.page-link(href='/products?page=' + (currentPage - 1), aria-label='Previous')
+                span(aria-hidden='true') &laquo;
+                span.sr-only Previous
+          - let page = 1
+          while page <= totalPage
+            li.page-item(class=currentPage === page ? "active" : '')
+              a.page-link(href='/products?page=' + page) #{page++}
+          if (currentPage < totalPage) 
+            li.page-item
+              a.page-link(href='/products?page=' + (currentPage + 1), aria-label='Next')
+                span(aria-hidden='true') &raquo;
+                span.sr-only Next
