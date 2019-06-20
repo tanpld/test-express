@@ -2,6 +2,9 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 
 const userRoute = require('./routes/user.route');
+const authRoute = require('./routes/auth.route');
+
+const authMiddleware = require('./middlewares/auth.middleware');
 
 const app = express();
 const port = 3000;
@@ -13,7 +16,8 @@ app.use(cookieParser());
 
 app.use(express.static('public'));
 
-app.use('/users', userRoute);
+app.use('/users', authMiddleware.requireAuth, userRoute);
+app.use('/auth', authRoute);
 
 app.set('view engine', 'pug');
 app.set('views', './views');
