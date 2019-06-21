@@ -19,17 +19,14 @@ block content
 
       nav(aria-label='Page navigation example')
         ul.pagination
-          if (currentPage !== 1) 
-            li.page-item
-              a.page-link(href='/products?page=' + (currentPage - 1), aria-label='Previous')
-                span(aria-hidden='true') &laquo;
-                span.sr-only Previous
-          - let page = 1
-          while page <= totalPage
+          li.page-item(class=currentPage === 1 ? "disabled" : '')
+            a.page-link(href='/products?page=' + (currentPage - 1), aria-label='Previous')
+              span(aria-hidden='true') &laquo;
+              span.sr-only Previous
+          each page in visiblePageNav
             li.page-item(class=currentPage === page ? "active" : '')
-              a.page-link(href='/products?page=' + page) #{page++}
-          if (currentPage < totalPage) 
-            li.page-item
-              a.page-link(href='/products?page=' + (currentPage + 1), aria-label='Next')
-                span(aria-hidden='true') &raquo;
-                span.sr-only Next
+              a.page-link(href='/products?page=' + page) #{page}
+          li.page-item(class=currentPage === totalPage ? "disabled" : '')
+            a.page-link(href='/products?page=' + (currentPage + 1), aria-label='Next')
+              span(aria-hidden='true') &raquo;
+              span.sr-only Next
