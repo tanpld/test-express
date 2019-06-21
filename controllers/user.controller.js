@@ -24,6 +24,10 @@ module.exports.createView = (req, res) => {
 
 module.exports.createAction = (req, res) => {
   req.body.id = shortid.generate();
+  req.body.avatar = req.file.path
+    .split('/')
+    .slice(1)
+    .join('/');
   db.get('users')
     .push(req.body)
     .write();
@@ -36,7 +40,6 @@ module.exports.user = (req, res) => {
     .get('users')
     .find({ id: id })
     .value();
-  console.log(user);
   res.render('users/view', {
     user: user,
   });
