@@ -13,5 +13,30 @@ module.exports = (req, res, next) => {
       .push({ id: sessionId })
       .write();
   }
+
+  const user = db
+    .get('users')
+    .find({ id: req.signedCookies.userId })
+    .value();
+
+  res.locals.user = user;
+
+  const sessionId = req.signedCookies.sessionId;
+
+  if (!sessionId) {
+    return;
+  } else {
+    const cart = db
+      .get('sessions')
+      .find({ id: sessionId })
+      .get('cart')
+      .value();
+    let totalItems = Object.keys(cart).reduce(
+      (total, item) => total + cart[item],
+      0,
+    );
+    res.locals.totalItems = totalItems;
+  }
+
   next();
 };
