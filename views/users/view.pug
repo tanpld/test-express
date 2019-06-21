@@ -2,6 +2,7 @@ extends ../layouts/common
 block content
   h1 User details
   .card
+    img(src='/'+user.avatar, width="100px")
     .card-body
       h5.card-title= user.name
       p.card-text ID: #{user.id}
