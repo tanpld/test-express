@@ -9,6 +9,7 @@ const authRoute = require('./routes/auth.route');
 const productRoute = require('./routes/product.route');
 
 const authMiddleware = require('./middlewares/auth.middleware');
+const sessionMiddleware = require('./middlewares/session.middleware');
 
 const app = express();
 const port = 3000;
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser(process.env.SESSION_SECRET));
+app.use(sessionMiddleware);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
